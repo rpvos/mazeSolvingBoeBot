@@ -7,11 +7,11 @@ import TI.Timer;
 
 import java.util.ArrayList;
 
-public class MazeSolver {
+public class Bot {
     private ArrayList<Updatable> updatables;
     private MotorControl motorControl;
 
-    public MazeSolver() {
+    public Bot() {
         init();
 
         /**
