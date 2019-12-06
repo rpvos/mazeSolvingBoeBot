@@ -1,6 +1,7 @@
 package MazeSolverBot.ApplicationLayer;
 
 import MazeSolverBot.InterfaceLayer.MotorControl;
+import MazeSolverBot.InterfaceLayer.RouteFollower;
 import MazeSolverBot.InterfaceLayer.UltrasonicControl;
 import MazeSolverBot.Utils.Updatable;
 import TI.BoeBot;
@@ -10,6 +11,7 @@ public class Bot {
     private ArrayList<Updatable> updatables;
     private MotorControl motorControl;
     private UltrasonicControl ultrasonicControl;
+    private RouteFollower routeFollower;
 
 
     public Bot() {
@@ -22,6 +24,11 @@ public class Bot {
             //updates
             for (Updatable updatable : this.updatables) {
                 updatable.update();
+            }
+
+            if(routeFollower.hasHitIntersection()){
+                routeFollower.off();
+
             }
 
             //wait so it is less CPU heavy
@@ -37,10 +44,11 @@ public class Bot {
         this.motorControl = new MotorControl();
         this.ultrasonicControl = new UltrasonicControl();
         this.updatables = new ArrayList<>();
-
+        this.routeFollower = new RouteFollower(motorControl);
 
         this.updatables.add(motorControl);
         this.updatables.add(ultrasonicControl);
+        this.updatables.add(routeFollower);
     }
 
 }

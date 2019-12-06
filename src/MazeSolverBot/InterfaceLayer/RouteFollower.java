@@ -3,12 +3,13 @@ package MazeSolverBot.InterfaceLayer;
 import MazeSolverBot.HardwareLayer.Sensor.LineFollower;
 import MazeSolverBot.HardwareLayer.Sensor.LineFollowerCallBack;
 import MazeSolverBot.Utils.IntervalTimer;
+import MazeSolverBot.Utils.Updatable;
 import TI.Timer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RouteFollower implements LineFollowerCallBack {
+public class RouteFollower implements LineFollowerCallBack, Updatable {
 
     private Timer timer1;
     private Timer t4;
@@ -160,6 +161,7 @@ public class RouteFollower implements LineFollowerCallBack {
 
 
     public void off() {
+        this.motorControl.setMotorsTarget(0,0);
         this.lineFollowerState = false;
     }
 }
