@@ -41,7 +41,7 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
         this.timer1 = new Timer(10);
 
 
-        this.lineFollowerState = false;
+        this.lineFollowerState = true;
         //Here the motor control wil be implemented
         this.motorControl = motorControl;
 
@@ -127,7 +127,7 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
     }
 
     public boolean hasHitIntersection(){
-        return this.rightSensorStatus.equals("black") && this.middleSensorStatus.equals("black") && this.leftSensorStatus.equals("black");
+        return (this.rightSensorStatus.equals("black") && this.middleSensorStatus.equals("black") && this.leftSensorStatus.equals("black"));
     }
 
     /**

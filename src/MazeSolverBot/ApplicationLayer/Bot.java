@@ -6,6 +6,8 @@ import MazeSolverBot.InterfaceLayer.RouteFollower;
 import MazeSolverBot.InterfaceLayer.UltrasonicControl;
 import MazeSolverBot.Utils.Updatable;
 import TI.BoeBot;
+import TI.Timer;
+
 import java.util.ArrayList;
 
 public class Bot {
@@ -15,13 +17,14 @@ public class Bot {
     private RouteFollower routeFollower;
     private Mapper mapper;
 
+    private Timer prinmtMapTimer = new Timer(2000);
+
 
     public Bot() {
         init();
 
-        mapper.addIntersection(1,0,true,false,false,false);
-        mapper.printMap();
-        
+        mapper.addIntersection(0,0,true,false,false,false);
+
         /**
          * detection loop
          */
@@ -32,8 +35,13 @@ public class Bot {
             }
 
             if(routeFollower.hasHitIntersection()){
+                mapper.addIntersection(1,0,true,true,true,true);
                 routeFollower.off();
+            }
 
+            if (prinmtMapTimer.timeout()){
+                mapper.printMap();
+                prinmtMapTimer.mark();
             }
 
             //wait so it is less CPU heavy

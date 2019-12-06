@@ -16,6 +16,10 @@ public class Mapper {
         x += transmutationX;
         y += transmutationY;
         intersections[x][y] = new Intersection(north,east,south,west);
+
+        if (east = true){
+            //turn right
+        }
     }
 
     public void printMap(){
