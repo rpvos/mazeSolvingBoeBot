@@ -1,6 +1,6 @@
 package MazeSolverBot.ServoMotor;
 
-public class ServoMotor {
+public class Motor {
     private int pin;
     private TI.Servo servo;
 
@@ -11,7 +11,7 @@ public class ServoMotor {
      * constructor to set the pin number and initiate the servo
      * @param pin   int that determines where to send the data to
      */
-    public ServoMotor(int pin) {
+    public Motor(int pin) {
         this.pin = pin;
         this.servo = new TI.Servo(pin);
     }

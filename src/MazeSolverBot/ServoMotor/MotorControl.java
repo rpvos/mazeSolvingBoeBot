@@ -3,8 +3,8 @@ package MazeSolverBot.ServoMotor;
 import TI.Timer;
 
 public class MotorControl {
-    private ServoMotor motorLeft;
-    private ServoMotor motorRight;
+    private Motor motorLeft;
+    private Motor motorRight;
 
     private final float speedStep = 0.025F; // the amount that is added to the speed when speeding up
     private final float turnRateStep = 0.1F; // the amount that is added each step to the turn
@@ -21,8 +21,8 @@ public class MotorControl {
     private boolean slowAccelerate;
 
     public MotorControl() {
-        this.motorLeft = new ServoMotor(12);
-        this.motorRight = new ServoMotor(13);
+        this.motorLeft = new Motor(12);
+        this.motorRight = new Motor(13);
         handBreak = false;
         isDrivingBackward = false;
         slowAccelerate = true;
