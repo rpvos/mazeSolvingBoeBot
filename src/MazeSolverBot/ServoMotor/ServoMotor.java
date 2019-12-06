@@ -1,4 +1,4 @@
-package Motor;
+package MazeSolverBot.ServoMotor;
 
 public class ServoMotor {
     private int pin;
