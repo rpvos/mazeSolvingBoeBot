@@ -1,8 +1,11 @@
-package MazeSolverBot.ServoMotor;
+package MazeSolverBot.InterfaceLayer;
 
+import MazeSolverBot.HardwareLayer.Motor;
+import MazeSolverBot.Utils.Updatable;
 import TI.Timer;
 
-public class MotorControl {
+public class MotorControl implements Updatable {
+
     private Motor motorLeft;
     private Motor motorRight;
 
@@ -159,3 +162,4 @@ public class MotorControl {
         this.slowAccelerate = slowAccelerate;
     }
 }
+

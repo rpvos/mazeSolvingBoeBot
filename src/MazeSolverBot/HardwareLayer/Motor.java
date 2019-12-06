@@ -1,6 +1,7 @@
-package MazeSolverBot.ServoMotor;
+package MazeSolverBot.HardwareLayer;
 
 public class Motor {
+
     private int pin;
     private TI.Servo servo;
 
