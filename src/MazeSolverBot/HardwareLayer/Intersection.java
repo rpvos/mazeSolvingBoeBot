@@ -5,6 +5,7 @@ public class Intersection {
     private boolean east;
     private boolean south;
     private boolean west;
+    private int counter;
 
 
     public Intersection(boolean north, boolean east,boolean south, boolean west) {
@@ -12,10 +13,19 @@ public class Intersection {
         this.east = east;
         this.south = south;
         this.west = west;
+        this.counter = 1;
+    }
+
+    public void count(){
+        this.counter++;
     }
 
     @Override
     public String toString() {
-        return "O";
+        return ""+counter;
+    }
+
+    public int getCounter() {
+        return counter;
     }
 }

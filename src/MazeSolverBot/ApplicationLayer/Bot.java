@@ -16,14 +16,16 @@ public class Bot {
     private UltrasonicControl ultrasonicControl;
     private RouteFollower routeFollower;
     private Mapper mapper;
+    private boolean sawLine;
 
     private Timer prinmtMapTimer = new Timer(2000);
 
 
     public Bot() {
         init();
+        mapper.addIntersection(true,false,false);
+        sawLine = false;
 
-        mapper.addIntersection(0,0,true,false,false,false);
 
         /**
          * detection loop
@@ -35,8 +37,11 @@ public class Bot {
             }
 
             if(routeFollower.hasHitIntersection()){
-                mapper.addIntersection(1,0,true,true,true,true);
+                BoeBot.wait(350);
                 routeFollower.off();
+                mapper.addIntersection(true,true,true);
+                routeFollower.turnRight();
+                routeFollower.on();
             }
 
             if (prinmtMapTimer.timeout()){

@@ -2,6 +2,7 @@ package MazeSolverBot.InterfaceLayer;
 
 import MazeSolverBot.HardwareLayer.Motor;
 import MazeSolverBot.Utils.Updatable;
+import TI.BoeBot;
 import TI.Timer;
 
 public class MotorControl implements Updatable {
@@ -152,6 +153,24 @@ public class MotorControl implements Updatable {
     public void setHandBreak(boolean handBreak) {
         setMotorsTarget(0, 0);
         this.handBreak = handBreak;
+    }
+
+    public void mazeDirection(String direction){
+        switch (direction){
+            case "right":
+                motorLeft.update(0.2f,true);
+                motorRight.update(0.2f,true);
+                break;
+            case "left":
+
+                break;
+            case "back":
+
+                break;
+            case "forward":
+
+                break;
+        }
     }
 
     public void setSlowAccelerate(boolean slowAccelerate) {

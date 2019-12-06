@@ -164,4 +164,19 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
         this.motorControl.setMotorsTarget(0,0);
         this.lineFollowerState = false;
     }
+
+    public void turnRight(){
+        Timer timer = new Timer(500);
+        while (true){
+            this.motorControl.rotate("right");
+            for (LineFollower lineFollower : lineFollowerList) {
+                lineFollower.update();
+            }
+            if (timer.timeout()&&this.middleSensorStatus.equals("black")){
+                motorControl.setMotorsTarget(0,0);
+                break;
+            }
+        }
+
+    }
 }
