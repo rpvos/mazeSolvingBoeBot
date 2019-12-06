@@ -1,5 +1,6 @@
 package MazeSolverBot.ApplicationLayer;
 
+import MazeSolverBot.InterfaceLayer.Mapper;
 import MazeSolverBot.InterfaceLayer.MotorControl;
 import MazeSolverBot.InterfaceLayer.RouteFollower;
 import MazeSolverBot.InterfaceLayer.UltrasonicControl;
@@ -12,11 +13,15 @@ public class Bot {
     private MotorControl motorControl;
     private UltrasonicControl ultrasonicControl;
     private RouteFollower routeFollower;
+    private Mapper mapper;
 
 
     public Bot() {
         init();
 
+        mapper.addIntersection(1,0,true,false,false,false);
+        mapper.printMap();
+        
         /**
          * detection loop
          */
@@ -43,6 +48,8 @@ public class Bot {
     public void init() {
         this.motorControl = new MotorControl();
         this.ultrasonicControl = new UltrasonicControl();
+        this.mapper = new Mapper();
+
         this.updatables = new ArrayList<>();
         this.routeFollower = new RouteFollower(motorControl);
 

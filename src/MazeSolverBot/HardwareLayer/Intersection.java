@@ -7,13 +7,15 @@ public class Intersection {
     private boolean west;
 
 
-    public Intersection(boolean north, boolean east, boolean west) {
+    public Intersection(boolean north, boolean east,boolean south, boolean west) {
         this.north = north;
         this.east = east;
-        this.south = true;
+        this.south = south;
         this.west = west;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "O";
+    }
 }
