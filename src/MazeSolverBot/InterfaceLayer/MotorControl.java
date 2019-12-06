@@ -154,10 +154,6 @@ public class MotorControl implements Updatable {
         this.handBreak = handBreak;
     }
 
-    public boolean isDrivingBackward() {
-        return isDrivingBackward;
-    }
-
     public void setSlowAccelerate(boolean slowAccelerate) {
         this.slowAccelerate = slowAccelerate;
     }
