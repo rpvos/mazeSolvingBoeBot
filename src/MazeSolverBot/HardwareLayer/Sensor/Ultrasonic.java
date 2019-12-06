@@ -4,12 +4,13 @@ import MazeSolverBot.Utils.Updatable;
 import TI.BoeBot;
 
 public class Ultrasonic implements Updatable {
-    private boolean isOn;
     private double distance;
     private UltrasonicCallBack ultrasonicCallBack;
+    private String name;
 
-    public Ultrasonic(UltrasonicCallBack ultrasonicCallBack) {
+    public Ultrasonic(UltrasonicCallBack ultrasonicCallBack, String name) {
         this.ultrasonicCallBack = ultrasonicCallBack;
+        this.name = name;
     }
 
     public void update() {
@@ -38,6 +39,14 @@ public class Ultrasonic implements Updatable {
 
         //This line will call a method in hit detection with a specific parameter, in this case we use this to return
         //a value to hit detection
-        ultrasonicCallBack.ultrasonicSensorDistance(this.distance);
+        ultrasonicCallBack.ultrasonicSensorDistance(this);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getDistance() {
+        return distance;
     }
 }

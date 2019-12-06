@@ -1,15 +1,16 @@
 package MazeSolverBot.ApplicationLayer;
 
 import MazeSolverBot.InterfaceLayer.MotorControl;
+import MazeSolverBot.InterfaceLayer.UltrasonicControl;
 import MazeSolverBot.Utils.Updatable;
 import TI.BoeBot;
-import TI.Timer;
-
 import java.util.ArrayList;
 
 public class Bot {
     private ArrayList<Updatable> updatables;
     private MotorControl motorControl;
+    private UltrasonicControl ultrasonicControl;
+
 
     public Bot() {
         init();
@@ -33,14 +34,13 @@ public class Bot {
      * initialising every object we need
      */
     public void init() {
-        /**
-         * @todo
-         * route
-         * routeFollower
-         */
         this.motorControl = new MotorControl();
+        this.ultrasonicControl = new UltrasonicControl();
         this.updatables = new ArrayList<>();
+
+
         this.updatables.add(motorControl);
+        this.updatables.add(ultrasonicControl);
     }
 
 }
