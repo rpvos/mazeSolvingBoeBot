@@ -16,6 +16,22 @@ public class Intersection {
         this.counter = 1;
     }
 
+    public boolean isNorth() {
+        return north;
+    }
+
+    public boolean isEast() {
+        return east;
+    }
+
+    public boolean isSouth() {
+        return south;
+    }
+
+    public boolean isWest() {
+        return west;
+    }
+
     public void count(){
         this.counter++;
     }

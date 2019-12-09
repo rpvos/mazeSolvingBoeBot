@@ -150,21 +150,32 @@ public class Mapper {
         ArrayList<Character> directions = new ArrayList<>();
         x = 20;
         y = 20;
-        Intersection prevIntersection = intersections[20][20];
         boolean exitFound = false;
 
         while (!exitFound) {
-            intersections[x][y].setCounter(9);
+            intersections[x][y].setCounter(intersections[x][y].getCounter()+5);
 
-            int north = intersections[x][y + 1].getCounter();
-            int east = intersections[x + 1][y].getCounter();
+            int north = 9;
+            int east = 9;
             int south = intersections[x][y - 1].getCounter();
             int west = intersections[x - 1][y].getCounter();
 
+            if (intersections[x][y + 1].isNorth()){
+                north = intersections[x][y + 1].getCounter();
+            }
+            if (intersections[x + 1][y].isEast()){
+                east = intersections[x + 1][y].getCounter();
+            }
+            if (intersections[x][y-1].isSouth()){
+                
+            }
 
-            if (north < east && north < south && north < west && intersections[x][y + 1] != null) {
-                directions.add('N');
-                y++;
+
+            if (intersections[x][y].isNorth() && intersections[x][y + 1] != null) {
+                if (north < east && north < south && north < west){
+                    directions.add('N');
+                    y++;
+                }
             } else if (east < north && east < south && east < west && intersections[x + 1][y] != null) {
                 directions.add('E');
                 x++;
