@@ -20,7 +20,7 @@ public class LineFollower {
         this.lineFollowerCallBack = lineFollowerCallBack;
         this.sensorName = sensorName;
         this.pin = pin;
-        this.thresholdValue = 1200;
+        this.thresholdValue = 1250;
     }
 
     private boolean isOn;
