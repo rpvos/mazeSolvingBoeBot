@@ -10,15 +10,16 @@ public class Mapper {
     private int x = 20;
     private int y = 20;
     private char facingDirection;
+    private RouteFollower routeFollower;
 
-
-    public Mapper() {
+    public Mapper(RouteFollower routeFollower) {
         intersections = new Intersection[40][40];
         facingDirection = 'N';
     }
 
     /**
      * every time this function gets called the method wil save the intersection and then proceeds to the next logical intersection
+     *
      * @param front these are boolean you have to set with if there are walls
      * @param right
      * @param left
@@ -213,6 +214,7 @@ public class Mapper {
             if (facingDirection == 'N') {
                 if (direction == 'W') {
                     //turn left
+
                     facingDirection = 'W';
                     //wait for next intersection
                 } else if (direction == 'N') {
