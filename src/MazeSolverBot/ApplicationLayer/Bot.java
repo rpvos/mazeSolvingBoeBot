@@ -40,7 +40,6 @@ public class Bot {
                 BoeBot.wait(350);
                 routeFollower.off();
                 mapper.addIntersection(ultrasonicControl.getUltrasonicMiddleDistance(),ultrasonicControl.getUltrasonicRightDistance(),ultrasonicControl.getUltrasonicLeftDistance());
-                routeFollower.turnRight();
                 routeFollower.on();
             }
 

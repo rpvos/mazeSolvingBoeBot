@@ -35,26 +35,37 @@ public class Mapper {
                 intersections[x][y] = new Intersection(front, right, true, left);
                 if (right) {
                     facingDirection = 'E';
+                    routeFollower.off();
                     //turn right
-
+                    routeFollower.turnRight();
                     //add x because going right once
+                    routeFollower.on();
                     x++;
                 } else if (front) {
                     //go foward
-
+                    routeFollower.off();
+                    routeFollower.goForward();
                     //y changes
+                    routeFollower.on();
+
                     y++;
                 } else if (left) {
                     facingDirection = 'W';
                     //turn left
-
+                    routeFollower.off();
+                    routeFollower.turnLeft();
                     //x changes going left once
+                    routeFollower.on();
+
                     x--;
                 } else {
                     facingDirection = 'S';
                     //turn 180 degrees
-
+                    routeFollower.off();
+                    routeFollower.turnBack();
                     //goes back once
+                    routeFollower.on();
+
                     y--;
                 }
                 break;
@@ -63,23 +74,37 @@ public class Mapper {
                 if (right) {
                     facingDirection = 'S';
                     //turn right
+                    routeFollower.off();
+                    routeFollower.turnRight();
+                    routeFollower.on();
 
                     //add x because going right once
                     y--;
                 } else if (front) {
                     //go foward
+                    routeFollower.off();
+                    routeFollower.goForward();
+                    routeFollower.on();
+
 
                     //y changes
                     x++;
                 } else if (left) {
                     facingDirection = 'N';
                     //turn left
+                    routeFollower.off();
+                    routeFollower.turnLeft();
+                    routeFollower.on();
 
                     //x changes going left once
                     y++;
                 } else {
                     facingDirection = 'W';
                     //turn 180 degrees
+                    routeFollower.off();
+                    routeFollower.turnBack();
+
+                    routeFollower.on();
 
                     //goes back once
                     x--;
@@ -90,23 +115,36 @@ public class Mapper {
                 if (right) {
                     facingDirection = 'W';
                     //turn right
+                    routeFollower.off();
+                    routeFollower.turnRight();
+                    routeFollower.on();
 
                     //add x because going right once
                     x--;
                 } else if (front) {
                     //go foward
+                    routeFollower.off();
+                    routeFollower.goForward();
+                    routeFollower.on();
 
                     //y changes
                     y--;
                 } else if (left) {
                     facingDirection = 'E';
                     //turn left
+                    routeFollower.off();
+                    routeFollower.turnLeft();
+                    routeFollower.on();
 
                     //x changes going left once
                     x++;
                 } else {
                     facingDirection = 'N';
                     //turn 180 degrees
+                    routeFollower.off();
+                    routeFollower.turnBack();
+
+                    routeFollower.on();
 
                     //goes back once
                     y++;
@@ -117,21 +155,33 @@ public class Mapper {
                 if (right) {
                     facingDirection = 'N';
                     //turn right
+                    routeFollower.off();
+                    routeFollower.turnRight();
+                    routeFollower.on();
 
                     y++;
                 } else if (front) {
                     //go foward
+                    routeFollower.off();
+                    routeFollower.goForward();
+                    routeFollower.on();
 
 
                     x--;
                 } else if (left) {
                     facingDirection = 'S';
                     //turn left
+                    routeFollower.off();
+                    routeFollower.turnLeft();
+                    routeFollower.on();
 
                     y--;
                 } else {
                     facingDirection = 'E';
                     //turn 180 degrees
+                    routeFollower.off();
+                    routeFollower.turnBack();
+                    routeFollower.on();
 
                     x++;
                 }
