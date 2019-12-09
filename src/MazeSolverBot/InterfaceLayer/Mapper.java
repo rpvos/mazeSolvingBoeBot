@@ -17,6 +17,12 @@ public class Mapper {
         facingDirection = 'N';
     }
 
+    /**
+     * every time this function gets called the method wil save the intersection and then proceeds to the next logical intersection
+     * @param front these are boolean you have to set with if there are walls
+     * @param right
+     * @param left
+     */
     public void addIntersection(boolean front, boolean right, boolean left) {
 
         if (intersections[x][y] != null) {
@@ -146,43 +152,51 @@ public class Mapper {
         System.out.println("--------------------");
     }
 
-    private ArrayList mapSolver() {
+    public ArrayList<Character> mapSolver() {
         ArrayList<Character> directions = new ArrayList<>();
         x = 20;
         y = 20;
         boolean exitFound = false;
 
         while (!exitFound) {
-            intersections[x][y].setCounter(intersections[x][y].getCounter()+5);
+            intersections[x][y].setCounter(intersections[x][y].getCounter() + 5);
 
             int north = 9;
             int east = 9;
-            int south = intersections[x][y - 1].getCounter();
-            int west = intersections[x - 1][y].getCounter();
+            int south = 9;
+            int west = 9;
 
-            if (intersections[x][y + 1].isNorth()){
-                north = intersections[x][y + 1].getCounter();
-            }
-            if (intersections[x + 1][y].isEast()){
-                east = intersections[x + 1][y].getCounter();
-            }
-            if (intersections[x][y-1].isSouth()){
-                
-            }
-
-
-            if (intersections[x][y].isNorth() && intersections[x][y + 1] != null) {
-                if (north < east && north < south && north < west){
-                    directions.add('N');
-                    y++;
+            if (intersections[x][y + 1] != null) {
+                if (intersections[x][y + 1].isNorth()) {
+                    north = intersections[x][y + 1].getCounter();
                 }
-            } else if (east < north && east < south && east < west && intersections[x + 1][y] != null) {
+            }
+            if (intersections[x + 1][y] != null) {
+                if (intersections[x + 1][y].isEast()) {
+                    east = intersections[x + 1][y].getCounter();
+                }
+            }
+            if (intersections[x][y - 1] != null) {
+                if (intersections[x][y - 1].isSouth()) {
+                    south = intersections[x][y - 1].getCounter();
+                }
+            }
+            if (intersections[x - 1][y] != null) {
+                if (intersections[x - 1][y].isWest()) {
+                    west = intersections[x - 1][y].getCounter();
+                }
+            }
+
+            if (north < east && north < south && north < west) {
+                directions.add('N');
+                y++;
+            } else if (east < north && east < south && east < west) {
                 directions.add('E');
                 x++;
-            } else if (south < north && south < east && south < west && intersections[x][y - 1] != null) {
+            } else if (south < north && south < east && south < west) {
                 directions.add('S');
                 y--;
-            } else if (west < north && west < east && west < south && intersections[x - 1][y] != null) {
+            } else if (west < north && west < east && west < south) {
                 directions.add('W');
                 x--;
             } else {
@@ -193,59 +207,70 @@ public class Mapper {
         return directions;
     }
 
-    private void driveMap(ArrayList<Character> directions) {
+    public void driveMap(ArrayList<Character> directions) {
         facingDirection = 'N';
         for (char direction : directions) {
             if (facingDirection == 'N') {
                 if (direction == 'W') {
                     //turn left
                     facingDirection = 'W';
-
+                    //wait for next intersection
                 } else if (direction == 'N') {
                     //drive forward
+                    //wait for next intersection
 
                 } else if (direction == 'E') {
                     //turn right
                     facingDirection = 'E';
+                    //wait for next intersection
 
                 }
             } else if (facingDirection == 'E') {
                 if (direction == 'E') {
                     //drive forward
+                    //wait for next intersection
 
                 } else if (direction == 'S') {
                     //turn right
                     facingDirection = 'S';
+                    //wait for next intersection
 
                 } else if (direction == 'N') {
                     //turn left
                     facingDirection = 'N';
+                    //wait for next intersection
 
                 }
             } else if (facingDirection == 'S') {
                 if (direction == 'S') {
                     //drive forward
+                    //wait for next intersection
 
                 } else if (direction == 'W') {
                     //turn right
                     facingDirection = 'W';
+                    //wait for next intersection
 
                 } else if (direction == 'E') {
                     //turn left
                     facingDirection = 'E';
+                    //wait for next intersection
 
                 }
             } else if (facingDirection == 'W') {
                 if (direction == 'W') {
                     //drive forward
+                    //wait for next intersection
 
                 } else if (direction == 'N') {
                     //turn right
                     facingDirection = 'N';
+                    //wait for next intersection
 
                 } else if (direction == 'S') {
                     //turn left
                     facingDirection = 'S';
+                    //wait for next intersection
 
                 }
             }

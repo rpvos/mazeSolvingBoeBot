@@ -25,6 +25,7 @@ public class Bot {
         init();
         mapper.addIntersection(true,false,false);
         sawLine = false;
+        boolean isSolving = false;
 
 
         /**
@@ -47,6 +48,10 @@ public class Bot {
             if (prinmtMapTimer.timeout()){
                 mapper.printMap();
                 prinmtMapTimer.mark();
+            }
+
+            if (isSolving){
+                mapper.driveMap(mapper.mapSolver());
             }
 
             //wait so it is less CPU heavy
