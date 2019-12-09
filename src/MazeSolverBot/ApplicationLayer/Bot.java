@@ -50,7 +50,9 @@ public class Bot {
             }
 
             if (BoeBot.digitalRead(9)){
-                mapper.driveMap(mapper.mapSolver());
+                ArrayList<Character> solution = mapper.mapSolver();
+                System.out.println(solution);
+                mapper.driveMap(solution);
             }
 
             //wait so it is less CPU heavy
