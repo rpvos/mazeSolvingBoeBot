@@ -179,4 +179,47 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
         }
 
     }
+
+    public void turnLeft(){
+        Timer timer = new Timer(500);
+        while (true){
+            this.motorControl.rotate("left");
+            for (LineFollower lineFollower : lineFollowerList) {
+                lineFollower.update();
+            }
+            if (timer.timeout()&&this.middleSensorStatus.equals("black")){
+                motorControl.setMotorsTarget(0,0);
+                break;
+            }
+        }
+    }
+
+    public void turnBack(){
+        Timer timer = new Timer(1500);
+        while (true){
+            this.motorControl.rotate("right");
+            for (LineFollower lineFollower : lineFollowerList) {
+                lineFollower.update();
+            }
+            if (timer.timeout()&&this.middleSensorStatus.equals("black")){
+                motorControl.setMotorsTarget(0,0);
+                break;
+            }
+        }
+    }
+
+    public void driveStraight(){
+        Timer timer = new Timer(500);
+        while (true){
+            this.motorControl.rotate("forward");
+            for (LineFollower lineFollower : lineFollowerList) {
+                lineFollower.update();
+            }
+            if (timer.timeout()&&this.middleSensorStatus.equals("black")){
+                motorControl.setMotorsTarget(0,0);
+                break;
+            }
+        }
+
+    }
 }
