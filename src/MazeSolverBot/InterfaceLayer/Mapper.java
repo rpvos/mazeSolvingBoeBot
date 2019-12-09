@@ -152,23 +152,28 @@ public class Mapper {
         y = 20;
         Intersection prevIntersection = intersections[20][20];
         boolean exitFound = false;
+
         while (!exitFound) {
-            if (intersections[x][y + 1].getCounter() == 1 && intersections[x][y + 1] != prevIntersection) {
+            intersections[x][y].setCounter(9);
+
+            int north = intersections[x][y + 1].getCounter();
+            int east = intersections[x + 1][y].getCounter();
+            int south = intersections[x][y - 1].getCounter();
+            int west = intersections[x - 1][y].getCounter();
+
+
+            if (north < east && north < south && north < west && intersections[x][y + 1] != null) {
                 directions.add('N');
                 y++;
-                prevIntersection = intersections[x][y];
-            } else if (intersections[x + 1][y].getCounter() == 1 && intersections[x + 1][y] != prevIntersection) {
+            } else if (east < north && east < south && east < west && intersections[x + 1][y] != null) {
                 directions.add('E');
                 x++;
-                prevIntersection = intersections[x][y];
-            } else if (intersections[x - 1][y].getCounter() == 1 && intersections[x - 1][y] != prevIntersection) {
-                directions.add('W');
-                x--;
-                prevIntersection = intersections[x][y];
-            } else if (intersections[x][y - 1].getCounter() == 1 && intersections[x][y - 1] != prevIntersection) {
+            } else if (south < north && south < east && south < west && intersections[x][y - 1] != null) {
                 directions.add('S');
                 y--;
-                prevIntersection = intersections[x][y];
+            } else if (west < north && west < east && west < south && intersections[x - 1][y] != null) {
+                directions.add('W');
+                x--;
             } else {
                 exitFound = true;
             }
@@ -181,16 +186,16 @@ public class Mapper {
         facingDirection = 'N';
         for (char direction : directions) {
             if (facingDirection == 'N') {
-                if (direction == 'N') {
+                if (direction == 'W') {
+                    //turn left
+                    facingDirection = 'W';
+
+                } else if (direction == 'N') {
                     //drive forward
 
                 } else if (direction == 'E') {
                     //turn right
                     facingDirection = 'E';
-
-                } else if (direction == 'W') {
-                    //turn left
-                    facingDirection = 'W';
 
                 }
             } else if (facingDirection == 'E') {
@@ -235,4 +240,5 @@ public class Mapper {
             }
         }
     }
+
 }
