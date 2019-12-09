@@ -25,7 +25,6 @@ public class Bot {
         init();
         mapper.addIntersection(true,false,false);
         sawLine = false;
-        boolean isSolving = false;
 
 
         /**
@@ -50,7 +49,7 @@ public class Bot {
                 prinmtMapTimer.mark();
             }
 
-            if (isSolving){
+            if (BoeBot.digitalRead(9)){
                 mapper.driveMap(mapper.mapSolver());
             }
 
