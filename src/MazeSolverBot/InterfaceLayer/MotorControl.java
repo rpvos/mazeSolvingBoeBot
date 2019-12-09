@@ -159,22 +159,20 @@ public class MotorControl implements Updatable {
         switch (direction){
             case "right":
                 //turn 90 degrees right
-                motorLeft.update(.5f, false);
-                motorRight.update(.5f, false);
+                motorLeft.update(.1f, false);
+                motorRight.update(.1f, false);
 
                 break;
             case "left":
                 //turn 90 degrees left
-                motorLeft.update(.5f, true);
-                motorRight.update(.5f, true);
-
-                break;
-            case "back":
-                //turn 180 degrees
+                motorLeft.update(.1f, true);
+                motorRight.update(.1f, true);
 
                 break;
             case "forward":
                 // drive straight
+                motorLeft.update(0.2f, false);
+                motorRight.update(0.2f, true);
                 break;
         }
     }
