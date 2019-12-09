@@ -155,20 +155,25 @@ public class MotorControl implements Updatable {
         this.handBreak = handBreak;
     }
 
-    public void mazeDirection(String direction){
+    public void rotate(String direction){
         switch (direction){
             case "right":
-                motorLeft.update(0.2f,true);
-                motorRight.update(0.2f,true);
+                //turn 90 degrees right
+                // drive straight
+
                 break;
             case "left":
+                //turn 90 degrees left
+                // drive straight
 
                 break;
             case "back":
+                //turn 180 degrees
+                // drive straight
 
                 break;
             case "forward":
-
+                // drive straight
                 break;
         }
     }

@@ -18,7 +18,7 @@ public class Bot {
     private Mapper mapper;
     private boolean sawLine;
 
-    private Timer prinmtMapTimer = new Timer(2000);
+    private Timer prinmtMapTimer = new Timer(5000);
 
 
     public Bot() {
@@ -39,7 +39,7 @@ public class Bot {
             if(routeFollower.hasHitIntersection()){
                 BoeBot.wait(350);
                 routeFollower.off();
-                mapper.addIntersection(true,true,true);
+                mapper.addIntersection(true,false,false);
                 routeFollower.turnRight();
                 routeFollower.on();
             }
