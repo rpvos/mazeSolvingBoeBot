@@ -40,7 +40,7 @@ public class Bot {
             if(routeFollower.hasHitIntersection()){
                 BoeBot.wait(350);
                 routeFollower.off();
-                mapper.addIntersection(true,false,false);
+                mapper.addIntersection(ultrasonicControl.getUltrasonicMiddleDistance(),ultrasonicControl.getUltrasonicRightDistance(),ultrasonicControl.getUltrasonicLeftDistance());
                 routeFollower.turnRight();
                 routeFollower.on();
             }
@@ -66,7 +66,7 @@ public class Bot {
     public void init() {
         this.motorControl = new MotorControl();
         this.ultrasonicControl = new UltrasonicControl();
-        this.mapper = new Mapper();
+        this.mapper = new Mapper(this.routeFollower);
 
         this.updatables = new ArrayList<>();
         this.routeFollower = new RouteFollower(motorControl);

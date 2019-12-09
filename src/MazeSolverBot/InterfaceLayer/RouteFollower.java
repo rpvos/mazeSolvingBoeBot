@@ -89,14 +89,14 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
                         //If the right sensor detects a line it steers left
                         if (this.rightSensorStatus.equals("black") || this.fellOffRight) {
                             System.out.println(this.counter2*(intervalTimer.timePassed())/this.adjustment);
-                                this.motorControl.setMotorsTarget(0.2f, this.counter2*(intervalTimer.timePassed())/this.adjustment);
+                                this.motorControl.setMotorsTarget(0.2f, 0.3f);
                                 this.fellOffRight = true;
                                 //The longer the middle sensor does not detect a line the more it will steer
                                 //again to ensure the Bot does not wiggle too much
                         }
                         //If the left sensor detects a line it steers right
                         if (this.leftSensorStatus.equals("black") || this.fellOffLeft) {
-                                this.motorControl.setMotorsTarget(0.2f, -this.counter4*(intervalTimer.timePassed())/this.adjustment);
+                                this.motorControl.setMotorsTarget(0.2f, -0.3f);
                                 this.fellOffLeft = true;
                                 //The longer the middle sensor does not detect a line the more it will steer
                                 //again to ensure the Bot does not wiggle too much
@@ -166,7 +166,7 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
     }
 
     public void turnRight(){
-        Timer timer = new Timer(500);
+        Timer timer = new Timer(400);
         while (true){
             this.motorControl.rotate("right");
             for (LineFollower lineFollower : lineFollowerList) {

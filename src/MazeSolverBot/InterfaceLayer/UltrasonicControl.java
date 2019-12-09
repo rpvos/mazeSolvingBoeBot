@@ -17,9 +17,9 @@ public class UltrasonicControl implements Updatable, UltrasonicCallBack {
     private double ultrasonicLeftDistance;
 
     public UltrasonicControl() {
-        ultrasonicRight = new Ultrasonic(this, "right");
-        ultrasonicMiddle = new Ultrasonic(this, "middle");
-        ultrasonicLeft = new Ultrasonic(this, "left");
+        ultrasonicRight = new Ultrasonic(this, "right", 4);
+        ultrasonicMiddle = new Ultrasonic(this, "middle", 2);
+        ultrasonicLeft = new Ultrasonic(this, "left",0);
     }
 
     @Override
@@ -29,6 +29,18 @@ public class UltrasonicControl implements Updatable, UltrasonicCallBack {
         ultrasonicLeft.update();
         //TODO read out distances
 
+    }
+
+    public boolean getUltrasonicRightDistance() {
+        return ultrasonicRightDistance < 10;
+    }
+
+    public boolean getUltrasonicMiddleDistance() {
+        return ultrasonicMiddleDistance < 10;
+    }
+
+    public boolean getUltrasonicLeftDistance() {
+        return ultrasonicLeftDistance < 10;
     }
 
     @Override

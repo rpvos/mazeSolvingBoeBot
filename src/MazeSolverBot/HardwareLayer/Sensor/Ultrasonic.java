@@ -8,26 +8,32 @@ public class Ultrasonic implements Updatable {
     private UltrasonicCallBack ultrasonicCallBack;
     private String name;
 
-    public Ultrasonic(UltrasonicCallBack ultrasonicCallBack, String name) {
+    private int echoPin;
+    private int triggerPin;
+
+    public Ultrasonic(UltrasonicCallBack ultrasonicCallBack, String name, int triggerPin) {
         this.ultrasonicCallBack = ultrasonicCallBack;
         this.name = name;
+
+        this.triggerPin = triggerPin;
+        this.echoPin = triggerPin+1;
     }
 
     public void update() {
 
         //to make sure there is no collision in inputs we will reset the trigger pin by switching the pin false
-        BoeBot.digitalWrite(5, false);
+        BoeBot.digitalWrite(this.triggerPin, false);
         BoeBot.uwait(2);
 
         //When the trigger pin is reset, the trigger wil be turned true
         // to trigger the sound pulses from the ultrasonic sensor
-        BoeBot.digitalWrite(5, true);
+        BoeBot.digitalWrite(this.triggerPin, true);
         BoeBot.uwait(10);
-        BoeBot.digitalWrite(5, false);
+        BoeBot.digitalWrite(this.triggerPin, false);
 
         //The time for the sound pulse to reflect into the sensor will be measured here
         // by timing the echo pin to turn true
-        double time = BoeBot.pulseIn(4, true, 3000);
+        double time = BoeBot.pulseIn(this.echoPin, true, 3000);
         if (time < 0) {
 
             //After testing we found out the max distance was about 44.03 cm
