@@ -25,7 +25,6 @@ public class Bot {
         init();
         mapper.addIntersection(true,false,false);
         sawLine = false;
-        boolean isSolving = false;
 
 
         /**
@@ -50,7 +49,7 @@ public class Bot {
                 prinmtMapTimer.mark();
             }
 
-            if (isSolving){
+            if (BoeBot.digitalRead(9)){
                 mapper.driveMap(mapper.mapSolver());
             }
 
@@ -66,10 +65,10 @@ public class Bot {
     public void init() {
         this.motorControl = new MotorControl();
         this.ultrasonicControl = new UltrasonicControl();
-        this.mapper = new Mapper(this.routeFollower);
+        this.routeFollower = new RouteFollower(motorControl);
+        this.mapper = new Mapper(routeFollower);
 
         this.updatables = new ArrayList<>();
-        this.routeFollower = new RouteFollower(motorControl);
 
         this.updatables.add(motorControl);
         this.updatables.add(ultrasonicControl);

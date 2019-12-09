@@ -209,7 +209,7 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
         }
     }
 
-    public void driveStraight(){
+    public void goForward(){
         Timer timer = new Timer(500);
         while (true){
             this.motorControl.rotate("forward");
