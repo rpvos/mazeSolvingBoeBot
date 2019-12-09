@@ -15,6 +15,7 @@ public class Mapper {
     public Mapper(RouteFollower routeFollower) {
         intersections = new Intersection[40][40];
         facingDirection = 'N';
+        this.routeFollower = routeFollower;
     }
 
     /**

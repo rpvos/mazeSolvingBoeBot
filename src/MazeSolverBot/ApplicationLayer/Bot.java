@@ -39,23 +39,26 @@ public class Bot {
             if(routeFollower.hasHitIntersection()){
                 BoeBot.wait(350);
                 routeFollower.off();
+                ultrasonicControl.update();
+                ultrasonicControl.update();
                 mapper.addIntersection(ultrasonicControl.getUltrasonicMiddleDistance(),ultrasonicControl.getUltrasonicRightDistance(),ultrasonicControl.getUltrasonicLeftDistance());
                 routeFollower.on();
+                System.out.println(ultrasonicControl.getUltrasonicMiddleDistance());
             }
 
-            if (prinmtMapTimer.timeout()){
+         /*   if (prinmtMapTimer.timeout()){
                 mapper.printMap();
                 prinmtMapTimer.mark();
-            }
+            }*/
 
             if (BoeBot.digitalRead(9)){
                 ArrayList<Character> solution = mapper.mapSolver();
-                System.out.println(solution);
+                //System.out.println(solution);
                 mapper.driveMap(solution);
             }
 
             //wait so it is less CPU heavy
-            BoeBot.wait(2);
+            BoeBot.wait(20);
 
         }
     }

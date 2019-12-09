@@ -20,7 +20,7 @@ public class LineFollower {
         this.lineFollowerCallBack = lineFollowerCallBack;
         this.sensorName = sensorName;
         this.pin = pin;
-        this.thresholdValue = 1250;
+        this.thresholdValue = 1000;
     }
 
     private boolean isOn;
@@ -34,6 +34,7 @@ public class LineFollower {
      */
     public void update() {
         this.lineSensorOutput = BoeBot.analogRead(this.pin);
+
         lineFollowerCallBack.onLineFollowerStatus(this);
     }
 
@@ -44,7 +45,7 @@ public class LineFollower {
     public String getDetectedColor(){
         if(this.lineSensorOutput < this.thresholdValue && this.lineSensorOutput > 0){
             return "white";
-        } else if(this.lineSensorOutput >= thresholdValue && this.lineSensorOutput > 0){
+        } else if(this.lineSensorOutput >= this.thresholdValue && this.lineSensorOutput > 0){
             return "black";
         } else{
             return "NA check sensor";

@@ -68,16 +68,18 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
      */
     public void update() {
 
+        if(timer1.timeout()) {
+            for (LineFollower lineFollower : lineFollowerList) {
+                lineFollower.update();
+
+            }
+            timer1.mark();
+        }
+
         //First there is a check if the function is turned on or not, the function can be turned off in the override
         if (this.lineFollowerState) {
             motorControl.setSlowAccelerate(false);
-            if(timer1.timeout()) {
-                for (LineFollower lineFollower : lineFollowerList) {
-                    lineFollower.update();
 
-                }
-                timer1.mark();
-            }
 
             //To ensure the Bot does not wiggle too much when following the line
             // we added an timer to round off the edges a bit
@@ -88,7 +90,6 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
 
                         //If the right sensor detects a line it steers left
                         if (this.rightSensorStatus.equals("black") || this.fellOffRight) {
-                            System.out.println(this.counter2*(intervalTimer.timePassed())/this.adjustment);
                                 this.motorControl.setMotorsTarget(0.2f, 0.5f);
                                 this.fellOffRight = true;
                                 //The longer the middle sensor does not detect a line the more it will steer
@@ -135,7 +136,7 @@ public class RouteFollower implements LineFollowerCallBack, Updatable {
      * attributes
      */
     public void onLineFollowerStatus(LineFollower lineFollower){
-        System.out.println(lineFollower.getDetectedColor() + ": " + lineFollower.getSensorName());
+        //System.out.println(lineFollower.getDetectedColor() + ": " + lineFollower.getSensorName());
         if(lineFollower.getSensorName().equals("leftSensor")){
             this.leftSensorStatus = lineFollower.getDetectedColor();
         } else if(lineFollower.getSensorName().equals("middleSensor")){
